@@ -1,0 +1,789 @@
+#include "Windows.h"
+#include "iostream"
+#include "cmath"
+#include "cstdio"
+#include "cstdlib"
+#include "cstring"
+ 
+using namespace std;
+void funk(int i,char *bukv)
+{
+	if (bukv[i]=='\0')
+		cout<<bukv[i-1];
+	else 
+	{
+		funk(i+1,bukv);
+		cout<<bukv[i-1];
+	}
+}
+void coder1(char *text1);
+void coder2(char *text2);
+void decoder3(char *text3);
+void decoder4(char *text);
+void invercion(char *str);
+void registr(char *str);
+void coder7(char * text);
+void coder8(char * text);
+void sum9(int dlinna, int shirina);
+void vichit10(int razmer);
+void proizv11(int razmer);
+void trans12(int st,int st1);
+void UR(double a,double b, int n);
+void UR14(double a1,double b1, int n);
+void URA15(double x,int n);
+double SR16(int n);
+double SR17(int n);
+double SR18(int n);
+double SR19(int n);
+double X(double x)
+{
+	double otv;
+	otv=x-sqrt(1+x);
+	return otv;
+}
+double Xp(double x)
+{
+	double otv;
+	otv=1-(1/(2*sqrt(x+1)));
+	return otv;
+}
+void funk20(int n)
+{
+	int *kol=new int[n];
+	kol[0]=1;
+	kol[1]=1;
+	for(int i=2;i<n;i++)
+	kol[i]=kol[i-1]+kol[i-2];
+	int sum=0;
+	for(int i=0;i<n;i++)
+		sum+=kol[i];
+	cout<<"Сумма чисел равна "<<sum<<" а сами числа вот:"<<endl;
+	for(int i=0;i<n;i++)
+		cout<<kol[i]<<" ";
+		delete []kol;
+}
+double result(int stroka,int stolbes,int **matrix1, int **matrix2, int r ) //Функция для подсчёта произведения того или иного значения в матрицах r -размер квадратичной матрицы
+{
+	double sum=0;
+	for(int i=0;i<r;i++)
+	sum+=matrix1[stroka-1][i]*matrix2[i][stolbes-1];
+	return sum; 
+}
+double funk21(int kolvo, double x);
+double funk22(int kolvo, double x);
+double funk23(int kolvo, double x);
+double funk24(int kolvo, double x);
+double funk25(int kolvo, double x);
+int main()
+{
+	system("chcp 1251");
+	system("cls");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	int q=0;
+	int dlin=0, shir=0;
+	while (q!=99)
+	{
+	cout<<endl<<"Введите идентификатор функции"<<endl;
+	cin>>q;
+	cout<<endl;
+	switch(q)	
+	{
+	case(1):
+		cout<<"Введите строку для кодирования (Не более 500 символов) "<<endl;
+		char str[501];
+		cin.ignore (1,'\n');
+		cin.getline(str,500);
+		coder1(str);
+		break;
+	case(2):
+		cout<<"Введите строку для кодирования (Не более 500 символов) "<<endl;
+		char str2[501];
+		cin.ignore (1,'\n');
+		cin.getline(str2,500);
+		coder2(str2);
+		break;
+	case(3):
+		cout<<"Введите строку для раскодирования (Не более 500 символов)"<<endl;
+		char str3[501];
+		cin.ignore (1,'\n');
+		cin. getline(str3,500);
+		decoder3(str3);
+		break;
+	case(4):
+		cout<<"Введите строку для раскодирования не более 200 символов (цифровой код) "<<endl;
+		char str4[201];
+		cin.ignore(1,'\n');
+		cin.getline(str4,200);
+		decoder4(str4);
+		break;
+	case(5):
+		cout<<"Введите текстовую строку для инверсирования (<=1000 simbols)"<<endl;
+		char str5[1001];
+		cin.ignore(1,'\n');
+		cin.getline(str5,1000);
+		invercion(str5);
+		break;
+	case(6):
+		cout<<"Введите текстровую строку для изменения регистра (<=500 simbols)"<<endl;
+		char str6[501];
+		cin.ignore(1,'\n');
+		cin.getline(str6,500);
+		registr(str6);
+		break;
+	case(7):
+		cout<<"Введите исходную строку(<=2000 simbols): "<<endl;
+		char str7[2001];
+		cin.ignore(1,'\n');
+		cin.getline(str7,2000);
+		coder7(str7);
+		break;
+	case(8):
+		cout<<"Введите исходную строку (<=1000)"<<endl;
+		char str8[1001];
+		cin.ignore(1,'\n');
+		cin.getline(str8,1000);
+		coder8(str8);
+		break;
+	case(9):
+		cout<<"Введите размер матрицы"<<endl;
+		cout<<"Введите длинну "<<endl;
+		cin>>dlin;
+		cout<<"Введите ширину "<<endl;
+		cin>>shir;
+		sum9(dlin,shir);
+		break;
+	case(10):
+		cout<<"Введите ранг матриц"<<endl;
+		int r;
+		cin>>r;
+		vichit10(r);
+		break;
+	case(11):
+		cout<<"Введите ранг матриц"<<endl;
+		int ran;
+		cin>>ran;
+		proizv11(ran);
+		break;
+	case(12):
+		int st,st1;// st - Строки в матрице, st1 - столбцы в матрице
+		cout<<"Введите количество строк в матрице "<<endl;
+		cin>>st;
+		cout<<"Введите количество столбцов в матрице "<<endl;
+		cin>>st1;
+		trans12(st,st1);
+		break;
+	case(13):
+		cout<<"Введите границы корня "<<endl;
+		double a,b;
+		cin>>a>>b;
+		cout<<"Введите количество итераций "<<endl;
+		int n13;
+		cin>>n13;
+		UR(a,b,n13);
+		break;
+	case(14):
+		cout<<"Введите границы корня "<<endl;
+		double a14,b14;
+		cin>>a14>>b14;
+		cout<<"Введите количество итераций "<<endl;
+		int n14;
+		cin>>n14;
+		UR14(a14,b14,n14);
+		break;
+	case(15):
+		cout<<"Введите начальное приближение ";
+		double x15;
+		cin>>x15;
+		cout<<"Введите количество итераций ";
+		int n15;
+		cin>>n15;
+		URA15(x15,n15);
+		break;
+	case(16):
+		cout<<"Введите количество элементов в массиве"<<endl;
+		int n16;
+		cin>>n16;
+		cout<<"Среднее арифметическое число равно "<<SR16(n16)<<endl;
+		break;
+	case(17):
+		cout<<"Введите количество элементов в массиве"<<endl;
+		int n17;
+		cin>>n17;
+		cout<<"Среднеквадратическое число равно "<<SR17(n17)<<endl;
+		break;
+	case(18):
+		cout<<"Введите количество элементов в массиве"<<endl;
+		int n18;
+		cin>>n18;
+		cout<<"Среднегармоническое число равно "<<SR18(n18)<<endl;
+		break;
+	case(19):
+		cout<<"Введите количество элементов в массиве"<<endl;
+		int n19;
+		cin>>n19;
+		cout<<"Среднегеометрическое число равно "<<SR19(n19)<<endl;
+		break;
+	case(20):
+		cout<<"Введите количество чисел Фибоначи для суммирования ";
+		int a20;
+		cin>>a20;
+		funk20(a20);
+		break;
+	case(21):
+		cout<<"Введите количество слагаемых и аргумент x экспоненты "<<endl;
+		int n21;
+		cin>>n21;
+		double x21;
+		cin>>x21;
+		cout<<"Экспонента равна "<<funk21(n21,x21)<<endl;
+		break;
+	case(22):
+		cout<<"Введите количество слагаемых и аргумент x гиперболического косинуса "<<endl;
+		int n22;
+		cin>>n22;
+		double x22;
+		cin>>x22;
+		cout<<"Гиперболический косинус равен "<<funk22(n22,x22)<<endl;
+		break;
+	case(23):
+		cout<<"Введите количество слагаемых и аргумент x гиперболического синуса "<<endl;
+		int n23;
+		cin>>n23;
+		double x23;
+		cin>>x23;
+		cout<<"Гиперболический синус равен "<<funk23(n23,x23)<<endl;
+		break;
+	case(24):
+		cout<<"Введите количество слагаемых и аргумент x для ряда 1+х+х*х+... "<<endl;
+		int n24;
+		cin>>n24;
+		double x24;
+		cin>>x24;
+		cout<<"Значение данного ряда равно "<<funk24(n24,x24)<<endl;	
+		break;
+	case(25):
+		cout<<"Введите количество слагаемых и аргумент x для ряда 1-х+х*х-... "<<endl;
+		int n25;
+		cin>>n25;
+		double x25;
+		cin>>x25;
+		cout<<"Значение данного ряда равно "<<funk25(n25,x25)<<endl;	
+		break;	
+	case(33):
+		cout<<"Справка по имеющимся функциям: "<<endl;
+		cout<<"1-Кодировщик на основе базовой строки "<<endl; // cout<<"x-пояснение"<<endl;       -------- общий шаблон пунктов меню быстрого доступа
+		cout<<"2-Кодировщик на основе базовой строки с некоторыми символами"<<endl;
+		cout<<"3-Раскодировщик с неполным алфавитом (ссылается на кодировку в пункте 2) "<<endl;
+		cout<<"4-Раскодировщик текста способов словового кодирования "<<endl;
+		cout<<"5-Распечатка строки в текстовом порядке "<<endl;
+		cout<<"6-Распечатка сообщения с изменённым регистром (Работает только на Английском языке...)"<<endl;
+		cout<<"7-Кодировка и раскодировка текста по принципу добавления константной величины "<<endl;
+		cout<<"8-Кодировка и раскодировка по принципу дополнения символа (ENG)"<<endl;
+		cout<<"9-Умножение динамической матрицы на число "<<endl;
+		cout<<"10-Вычитание квадратичных матриц"<<endl;
+		cout<<"11-Произведение квадратичных матриц"<<endl;
+		cout<<"12-Транспортирование динамической матрицы"<<endl;
+		cout<<"13-Решение уравнения x-sqrt(1+x)=0 методом половинного деления "<<endl;
+		cout<<"14-Решение уравнения методом хорд" <<endl;
+		cout<<"15-Решение уравнения методом Ньютона"<<endl;
+		cout<<"16-Вычисление среднеарифметического по динамическому массиву"<<endl;
+		cout<<"17-Вычисление среднеквадратического по динамическому массиву"<<endl;
+		cout<<"18-Вычисление среднегармонического динамического массива"<<endl;
+		cout<<"19-Вычисление среднегеометрического динамического массива "<<endl;
+		cout<<"20-Вычисление суммы последовательности чисел Фибоначи"<<endl;
+		cout<<"21-Вычисление экспоненты с использованием динамического массива"<<endl;
+		cout<<"22-Вычисление гиперболического косинуса с использованием динамического массива"<<endl;
+		cout<<"23-Вычисление гиперболического синуса с использованием динамического массива"<<endl;
+		cout<<"24-Вычисление ряда 1+x+x*x+... с использованием динамического массива (|x|<1)"<<endl;
+		cout<<"25-Вычисления ряда 1-х+х*х-х*х*х+... с использованием динамического массива (|x|<1) "<<endl;
+		break;
+	default:
+		cout<<"Данной функции нет в проекте. Попробуйте перейти в меню быстрого доступа (33) для получения информации по имеющимся функциям проекта."<<endl;
+		break;
+
+	}
+	}
+	return 0;
+}
+void coder1(char *text1)
+{
+	cout<<"Ваш код сообщения: "<<endl;
+	char alf[]={"йцукенгшщзхъфывапролджэячсмитьбю,.!?ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ \0"};
+	for(int i=0;text1[i]!='\0';i++)
+	{
+		for(int j=0;alf[j]!='\0';j++)
+		if (alf[j]==text1[i])
+		cout<<j+1<<" ";
+	}
+	cout<<endl;
+}
+void coder2(char *text2)
+{
+	cout<<"Ваш код сообщения: "<<endl;
+	char alf[]={"цвысмиапгньблщжхЭФЦУКЕГЩЩОПВСТИБ \0"};
+	for(int i=0;text2[i]!='\0';i++)
+		for(int j=0;alf[j]!='\0';j++)
+		{
+			if (alf[j]==text2[i])
+			{
+		cout<<j+1<<" ";
+		break;
+			}
+			if ((alf[j]==' ')&&(text2[i]!=' '))
+				cout<<text2[i]<<" ";
+		}
+		cout<<endl;
+}
+void decoder3(char *text3)
+{
+	int n;
+	char perem[2]={' '};
+	cout<<"Введенноё расшифрованное сообщение: "<<endl;
+	char alf[]={"цвысмиапгньблщжхЭФЦУКЕГЩЩОПВСТИБ \0"};
+	for (int i=0;text3[i]!='\0';i++)
+	{	perem[0]=' ';
+		perem[1]=' ';
+		if (text3[i]!=' ')
+		{
+		if ((text3[i]=='0')||(text3[i]=='1')||(text3[i]=='2')||(text3[i]=='3')||(text3[i]=='4')||(text3[i]=='5')||(text3[i]=='6')||(text3[i]=='7')||(text3[i]=='8')||(text3[i]=='9'))
+		{perem[0]=text3[i];
+		if ((text3[i+1]=='0')||(text3[i+1]=='1')||(text3[i+1]=='2')||(text3[i+1]=='3')||(text3[i+1]=='4')||(text3[i+1]=='5')||(text3[i+1]=='6')||(text3[i+1]=='7')||(text3[i+1]=='8')||(text3[i+1]=='9'))
+		{
+			perem[1]=text3[i+1];
+			i++; 
+		}
+		n=atoi(perem);
+		cout<<alf[n-1];
+		}
+		else
+		cout<<text3[i];
+		}
+
+	}
+	cout<<endl;
+}
+void decoder4(char *text)
+	{
+	int m=0,l=0,q=0;
+	char num[2];
+	char slov[]={"а при отношения знаменитый проекта название вопросы проблемы исключительно кириллический применили восприятия слова языках символов текст рыбу шрифтов исключительно запуске вопросы и своим и есть просмотра проектах на является отдельные разница ведь значительно распространенных контент связанные текст кириллический просмотра языках длинный рыбы в вариантов могут нести специальные различных запуске текст рыбу появляется не никакого макета средневековый рыбным возникнуть более и к веке того обязан набор такое"};
+	char slova[100][50];
+	cout<<"Расшифрованный текст:"<<endl;
+	for(int k=0;slov[k]!='\0';k++)
+		if (slov[k]==' ')
+		{
+			slova[l][q]='\0';
+			l++;
+			q=0;
+		}
+		else
+		{ slova[l][q]=slov[k];
+		  q++;
+		}
+
+		
+	for (int i=0;text[i]!='\0';i++)
+	{
+		num[0]=' ';
+		num[1]=' ';
+		if (text[i]!=' ')
+		{
+		if ((text[i]=='0')||(text[i]=='1')||(text[i]=='2')||(text[i]=='3')||(text[i]=='4')||(text[i]=='5')||(text[i]=='6')||(text[i]=='7')||(text[i]=='8')||(text[i]=='9'))
+		{num[0]=text[i];
+		if ((text[i+1]=='0')||(text[i+1]=='1')||(text[i+1]=='2')||(text[i+1]=='3')||(text[i+1]=='4')||(text[i+1]=='5')||(text[i+1]=='6')||(text[i+1]=='7')||(text[i+1]=='8')||(text[i+1]=='9'))
+		{
+			num[1]=text[i+1];
+			i++; 
+		}
+		m=atoi(num);
+		for (int i=0;slova[m-1][i]!='\0';i++)
+		cout<<slova[m-1][i];
+		cout<<" ";
+		}
+		}
+	}
+	cout<<endl;
+}
+void invercion(char *str)
+{
+	funk(1,str);
+	cout<<endl;
+}
+void registr(char *str)
+{
+	char b;
+	cout<<"Ваше изменённое сообщение: "<<endl;
+	for(int i=0; str[i]!='\0';i++)
+	{
+		b=str[i];
+		b=toupper(b);
+		if(b==str[i])
+			b=tolower(b);
+		cout<<b;
+
+	}
+	cout<<endl;
+}
+void coder7(char *text)
+{
+	cout<<"Введи сдвиг текста (+ или -) и число"<<endl;
+	int a=0;
+	cin>>a;
+	for(int i=0;text[i]!='\0';i++)
+	{
+		text[i]+=a;
+		cout<<text[i];
+	}
+	cout<<endl;
+}
+void coder8(char * text)
+{
+	int r=0;
+	char sr;
+	for(int i=0;text[i]!='\0';i++)
+	{
+		if (text[i]!=' ')
+		{	
+		sr=text[i];
+		sr=tolower(sr);
+		}
+		if (sr==text[i])
+			{
+		if (text[i]!=' ')
+				{
+			r=219-text[i]-text[i];
+			text[i]+=r;
+			cout<<text[i];
+				}
+		else
+			cout<<' ';
+			}
+		else
+		{
+		if (text[i]!=' ')
+				{
+			text[i]=tolower(text[i]);
+			r=219-text[i]-text[i];
+			text[i]+=r;
+			text[i]=toupper(text[i]);
+			cout<<text[i];
+				}
+		else
+			cout<<' ';
+		}
+	}
+}
+void sum9(int dlinna, int shirina)
+{
+   int **matrix=new int*[dlinna];
+   for (int i=0;i<dlinna;i++)
+   matrix[i]=new int[shirina];
+
+   for(int i=1;i<dlinna+1;i++)
+	   for(int j=1;j<shirina+1;j++)
+	   {
+		   cout<<"Введите элемент матрицы ["<<i<<"] ["<<j<<"]"<<endl;
+			cin>>matrix[i-1][j-1];
+	   }
+	cout<<"Введите константную величину для увеленчения/уменьшения матрицы"<<endl;
+	int con=0;
+	cin>>con;
+	   for(int i=1;i<dlinna+1;i++)
+	   {
+			cout<<endl;
+			for(int j=1;j<shirina+1;j++)
+			{
+				matrix[i-1][j-1]+=con;
+				cout<<matrix[i-1][j-1]<<" ";
+				
+			}
+	   }
+	   delete []matrix;
+}
+void vichit10(int razmer)
+{
+	int **matrix1=new int*[razmer];
+	int **matrix2=new int*[razmer];
+	for(int i=0;i<razmer;i++)
+	{
+		matrix1[i]=new int[razmer];
+		matrix2[i]=new int[razmer];
+	}
+	for (int i=1;i<razmer+1;i++)
+		for (int j=1;j<razmer+1;j++)
+		{
+			cout<<"Введите элемент ["<<i<<"] ["<<j<<"] 1-ой матрицы"<<endl;
+			cin>>matrix1[i-1][j-1];
+		}
+	for (int i=1;i<razmer+1;i++)
+		for (int j=1;j<razmer+1;j++)
+		{
+			cout<<"Введите элемент ["<<i<<"] ["<<j<<"] 2-ой матрицы"<<endl;
+			cin>>matrix2[i-1][j-1];
+		}
+	for (int i=1;i<razmer+1;i++)
+	{
+		cout<<endl;
+		for (int j=1;j<razmer+1;j++)
+		{
+			cout<<matrix1[i-1][j-1]-matrix2[i-1][j-1]<<" ";
+		}
+	}
+	delete []matrix1;
+	delete []matrix2;
+}
+void proizv11(int razmer)
+{
+	double str=0,stlb=0,vivod=0;
+	int **matrix1=new int*[razmer];
+	int **matrix2=new int*[razmer];
+	for(int i=0;i<razmer;i++)
+	{
+		matrix1[i]=new int[razmer];
+		matrix2[i]=new int[razmer];
+	}
+	cout<<"Ваш результат:"<<endl;
+	for (int i=1;i<razmer+1;i++)
+		for (int j=1;j<razmer+1;j++)
+		{
+			cout<<"Введите элемент ["<<i<<"] ["<<j<<"] 1-ой матрицы"<<endl;
+			cin>>matrix1[i-1][j-1];
+		}
+	for (int i=1;i<razmer+1;i++)
+		for (int j=1;j<razmer+1;j++)
+		{
+			cout<<"Введите элемент ["<<i<<"] ["<<j<<"] 2-ой матрицы"<<endl;
+			cin>>matrix2[i-1][j-1];
+		}
+	for (int i=1;i<razmer+1;i++)
+	{
+		cout<<endl;
+		for (int j=1;j<razmer+1;j++)
+		{
+			vivod=result(i,j,matrix1,matrix2,razmer);
+			cout<<vivod<<" ";
+		}
+	}
+	delete []matrix1;
+	delete []matrix2;
+}
+void trans12(int st,int st1)
+{
+	int **matrix1=new int*[st];
+	cout<<"Транспортированнная матрица: "<<endl;
+	for(int i=0;i<st;i++)
+	{
+		matrix1[i]=new int[st1];
+	}
+	for (int i=1;i<st+1;i++)
+		for (int j=1;j<st1+1;j++)
+		{
+			cout<<"Введите элемент ["<<i<<"] ["<<j<<"] 1-ой матрицы"<<endl;
+			cin>>matrix1[i-1][j-1];
+		}
+
+		for(int i=0;i<st1;i++)
+		{
+			cout<<endl;
+			for(int j=0;j<st;j++)
+			if (abs(matrix1[j][i])<100)
+				cout<<" "<<matrix1[j][i];
+			else
+				if(abs(matrix1[j][i])<10)
+					cout<<"  "<<matrix1[j][i];
+		}
+
+			delete []matrix1;
+}
+void UR(double a, double b, int n)
+{
+	double x;
+	double *iter=new double[n];
+	if (X(a)/X(b)<0)
+	{
+	for(int i=0;i<n;i++)
+	{
+		x=((a+b)/2);
+		if(X(x)/X(a)>=0)
+			a=(x);
+		else
+			b=(x);
+		cout<<i+1<<"-ая итерация равна "<<x<<endl;
+	}
+	}
+	else
+		cout<<"Введены неверные параметры. Коня либо нет на этом интервале либо край интервала является корнем ";
+	delete []iter;
+}
+void UR14(double a1,double b1, int n)
+{
+		double x;
+	double *iter=new double[n];
+	if (X(a1)/X(b1)<0)
+	{
+	for(int i=0;i<n;i++)
+	{
+		x=a1-(X(a1)/(X(b1)-X(a1)))*(b1-a1);
+		if(X(x)/X(a1)>=0)
+			a1=(x);
+		else
+			b1=(x);
+		cout<<i+1<<"-ая итерация равна "<<x<<endl;
+	}
+	}
+	else
+		cout<<"Введены неверные параметры. Коня либо нет на этом интервале либо край интервала является корнем ";
+	delete []iter;
+}
+void URA15(double x,int n)
+{
+	double o=x;
+	double *iter=new double[n];
+	for (int i=0;i<n;i++)
+	{
+		o=o-(X(o)/Xp(o));
+		cout<<i+1<<"-ый результат итерации равен "<<o<<endl;
+	}
+
+
+	delete []iter;
+}
+double SR16(int n)
+{
+	double *mass=new double[n];
+	double sum=0;
+	for(int i=0;i<n;i++)
+	{
+		cout<<"Введите "<<i+1<<"-ый элемент массива"<<endl;
+		cin>>mass[i];
+		sum+=mass[i];
+	}
+	delete []mass;
+	return sum/n;
+}
+double SR17(int n)
+{
+	double *mass=new double[n];
+	double sum=0;
+	for(int i=0;i<n;i++)
+	{
+		cout<<"Введите "<<i+1<<"-ый элемент массива"<<endl;
+		cin>>mass[i];
+		sum+=mass[i]*mass[i];
+	}
+	delete []mass;
+	return sqrt(sum);
+}
+double SR18(int n)
+{
+	double *mass=new double[n];
+	double sum=0;
+	for(int i=0;i<n;i++)
+	{
+		cout<<"Введите "<<i+1<<"-ый элемент массива"<<endl;
+		cin>>mass[i];
+		sum+=1/mass[i];
+	}
+	delete []mass;
+	return pow(sum/n,-1);
+}
+double SR19(int n)
+{
+	double *mass=new double[n];
+	double sum=1;
+	for(int i=0;i<n;i++)
+	{
+		cout<<"Введите "<<i+1<<"-ый элемент массива"<<endl;
+		cin>>mass[i];
+		sum*=mass[i];
+	}
+	delete []mass;
+	return pow(sum,1/double(n));
+}
+double funk21(int kolvo, double x)
+{
+	double exp=0;
+	double *mass=new double[kolvo];
+	mass[0]=1;
+	for(int i=1;i<kolvo;i++)
+	{
+		mass[i]=mass[i-1]*x/i;
+	}
+	for(int i=0;i<kolvo;i++)
+		exp+=mass[i];
+	delete []mass;
+	return exp;
+}
+double funk22(int kolvo, double x)
+{
+	double cos=0;
+	double *mass=new double[kolvo];
+	mass[0]=1;
+	for(int i=1;i<kolvo;i++)
+	{
+		mass[i]=mass[i-1]*x*x/(2*i-1)/(2*i);
+	}
+	for(int i=0;i<kolvo;i++)
+		cos+=mass[i];
+	delete []mass;
+	return cos;
+}
+double funk23(int kolvo, double x)
+{
+	double sin=0;
+	double *mass=new double[kolvo];
+	mass[0]=x;
+	for(int i=1;i<kolvo;i++)
+	{
+		mass[i]=mass[i-1]*x*x/(2*i+1)/(2*i);
+	}
+	for(int i=0;i<kolvo;i++)
+		sin+=mass[i];
+	delete []mass;
+	return sin;
+}
+double funk24(int kolvo, double x)
+{
+	if(abs(x)<=1)
+	{
+	double riad=0;
+	double *mass=new double[kolvo];
+	mass[0]=1;
+	for(int i=1;i<kolvo;i++)
+	{
+		mass[i]=mass[i-1]*x;
+	}
+	for(int i=0;i<kolvo;i++)
+		riad+=mass[i];
+	delete []mass;
+	return riad;
+	}
+	else
+	{
+		cout<<"Введён x модульно больший 1"<<endl;
+		return 0;
+	}
+}
+double funk25(int kolvo, double x)
+{
+	if(abs(x)<=1)
+	{
+	double riad=0;
+	double *mass=new double[kolvo];
+	mass[0]=1;
+	for(int i=1;i<kolvo;i++)
+	{
+		mass[i]=mass[i-1]*x*(-1);
+	}
+	for(int i=0;i<kolvo;i++)
+		riad+=mass[i];
+	delete []mass;
+	return riad;
+	}
+	else
+	{
+		cout<<"Введён x модульно больший 1"<<endl;
+		return 0;
+	}
+}
